@@ -1,0 +1,15 @@
+{
+  "name": "shopsphere",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ShopSphere – full-stack e-commerce demo (React + Express + PostgreSQL)",
+  "scripts": {
+    "install:all": "npm install --prefix server && npm install --prefix client",
+    "dev:server": "npm run dev --prefix server",
+    "dev:client": "npm run dev --prefix client",
+    "build": "npm run build --prefix client",
+    "test": "npm test --prefix client && npm test --prefix server",
+    "db:migrate": "npm run db:migrate --prefix server",
+    "db:seed": "npm run db:seed --prefix server"
+  }
+}

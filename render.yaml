@@ -1,0 +1,27 @@
+# Render Blueprint: one Node web service that builds the React app and serves it alongside the API.
+services:
+  - type: web
+    name: shopsphere
+    runtime: node
+    plan: free
+    rootDir: .
+    buildCommand: npm ci --prefix server && npm ci --prefix client && npm run build --prefix client && npm run db:migrate --prefix server
+    startCommand: npm run start --prefix server
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false          # paste your Supabase "Session pooler" URI in the Render dashboard
+      - key: DATABASE_SSL
+        value: "true"
+      - key: JWT_SECRET
+        generateValue: true  # Render generates a secure random value
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: CLIENT_ORIGIN
+        sync: false          # e.g. https://shopsphere.onrender.com
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false          # set a strong value; used only by `npm run db:seed`
