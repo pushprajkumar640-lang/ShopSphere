@@ -52,7 +52,7 @@ export default function Navbar() {
           {isAdmin && <NavLink to="/admin" className={linkCls}>Admin</NavLink>}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="ml-auto flex shrink-0 items-center gap-2">
           {user ? (
             <div className="hidden items-center gap-2 sm:flex">
               <span className="max-w-[120px] truncate text-sm text-white/80">Hi, {user.name.split(' ')[0]}</span>
